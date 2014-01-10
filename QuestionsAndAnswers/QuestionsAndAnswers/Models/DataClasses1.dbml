@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QandAnswers" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS2008;AttachDbFilename=|DataDirectory|\QandAnswers.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QandAnswersConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tag" Member="tags">
+    <Type Name="tag">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="tag_user_post_tag" Member="user_post_tags" ThisKey="id" OtherKey="tag_id" Type="user_post_tag" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[user]" Member="users">
+    <Type Name="user">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="salt" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="user_user_post" Member="user_posts" ThisKey="id" OtherKey="user_id" Type="user_post" />
+      <Association Name="user_user_favourite" Member="user_favourites" ThisKey="id" OtherKey="user_id" Type="user_favourite" />
+    </Type>
+  </Table>
+  <Table Name="dbo.user_post" Member="user_posts">
+    <Type Name="user_post">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="parent_post_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="content" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ranking_points" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="num_views" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="is_accepted_answer" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="user_post_user_favourite" Member="user_favourites" ThisKey="id" OtherKey="user_post_id" Type="user_favourite" />
+      <Association Name="user_post_user_post_tag" Member="user_post_tags" ThisKey="id" OtherKey="user_post_id" Type="user_post_tag" />
+      <Association Name="user_user_post" Member="user" ThisKey="user_id" OtherKey="id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.user_favourite" Member="user_favourites">
+    <Type Name="user_favourite">
+      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="user_post_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="user_user_favourite" Member="user" ThisKey="user_id" OtherKey="id" Type="user" IsForeignKey="true" />
+      <Association Name="user_post_user_favourite" Member="user_post" ThisKey="user_post_id" OtherKey="id" Type="user_post" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.user_post_tag" Member="user_post_tags">
+    <Type Name="user_post_tag">
+      <Column Name="tag_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="user_post_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="tag_user_post_tag" Member="tag" ThisKey="tag_id" OtherKey="id" Type="tag" IsForeignKey="true" />
+      <Association Name="user_post_user_post_tag" Member="user_post" ThisKey="user_post_id" OtherKey="id" Type="user_post" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

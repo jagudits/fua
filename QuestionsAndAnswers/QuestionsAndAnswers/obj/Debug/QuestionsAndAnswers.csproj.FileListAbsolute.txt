@@ -1,0 +1,7 @@
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\bin\QuestionsAndAnswers.dll
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\bin\QuestionsAndAnswers.pdb
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\bin\EntityFramework.dll
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\bin\EntityFramework.xml
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\obj\Debug\QuestionsAndAnswers.csprojResolveAssemblyReference.cache
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\obj\Debug\QuestionsAndAnswers.dll
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\obj\Debug\QuestionsAndAnswers.pdb
