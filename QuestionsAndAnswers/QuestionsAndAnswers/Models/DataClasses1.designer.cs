@@ -244,9 +244,9 @@ namespace QuestionsAndAnswers.Models
 		
 		private string _password;
 		
-		private string _salt;
-		
 		private System.DateTime _created_at;
+		
+		private string _email_address;
 		
 		private EntitySet<user_post> _user_posts;
 		
@@ -262,10 +262,10 @@ namespace QuestionsAndAnswers.Models
     partial void OnusernameChanged();
     partial void OnpasswordChanging(string value);
     partial void OnpasswordChanged();
-    partial void OnsaltChanging(string value);
-    partial void OnsaltChanged();
     partial void Oncreated_atChanging(System.DateTime value);
     partial void Oncreated_atChanged();
+    partial void Onemail_addressChanging(string value);
+    partial void Onemail_addressChanged();
     #endregion
 		
 		public user()
@@ -335,26 +335,6 @@ namespace QuestionsAndAnswers.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_salt", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string salt
-		{
-			get
-			{
-				return this._salt;
-			}
-			set
-			{
-				if ((this._salt != value))
-				{
-					this.OnsaltChanging(value);
-					this.SendPropertyChanging();
-					this._salt = value;
-					this.SendPropertyChanged("salt");
-					this.OnsaltChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_created_at", DbType="DateTime NOT NULL")]
 		public System.DateTime created_at
 		{
@@ -371,6 +351,26 @@ namespace QuestionsAndAnswers.Models
 					this._created_at = value;
 					this.SendPropertyChanged("created_at");
 					this.Oncreated_atChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email_address", CanBeNull=false)]
+		public string email_address
+		{
+			get
+			{
+				return this._email_address;
+			}
+			set
+			{
+				if ((this._email_address != value))
+				{
+					this.Onemail_addressChanging(value);
+					this.SendPropertyChanging();
+					this._email_address = value;
+					this.SendPropertyChanged("email_address");
+					this.Onemail_addressChanged();
 				}
 			}
 		}
@@ -468,6 +468,8 @@ namespace QuestionsAndAnswers.Models
 		
 		private System.DateTime _created_at;
 		
+		private string _title;
+		
 		private EntitySet<user_favourite> _user_favourites;
 		
 		private EntitySet<user_post_tag> _user_post_tags;
@@ -494,6 +496,8 @@ namespace QuestionsAndAnswers.Models
     partial void Onis_accepted_answerChanged();
     partial void Oncreated_atChanging(System.DateTime value);
     partial void Oncreated_atChanged();
+    partial void OntitleChanging(string value);
+    partial void OntitleChanged();
     #endregion
 		
 		public user_post()
@@ -664,6 +668,26 @@ namespace QuestionsAndAnswers.Models
 					this._created_at = value;
 					this.SendPropertyChanged("created_at");
 					this.Oncreated_atChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_title", CanBeNull=false)]
+		public string title
+		{
+			get
+			{
+				return this._title;
+			}
+			set
+			{
+				if ((this._title != value))
+				{
+					this.OntitleChanging(value);
+					this.SendPropertyChanging();
+					this._title = value;
+					this.SendPropertyChanged("title");
+					this.OntitleChanged();
 				}
 			}
 		}

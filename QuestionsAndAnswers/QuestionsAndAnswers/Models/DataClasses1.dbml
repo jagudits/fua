@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QandAnswers" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS2008;AttachDbFilename=|DataDirectory|\QandAnswers.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QandAnswersConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\QandAnswers.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QandAnswersConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tag" Member="tags">
     <Type Name="tag">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -12,8 +12,8 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="salt" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="created_at" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Member="email_address" Type="System.String" CanBeNull="false" />
       <Association Name="user_user_post" Member="user_posts" ThisKey="id" OtherKey="user_id" Type="user_post" />
       <Association Name="user_user_favourite" Member="user_favourites" ThisKey="id" OtherKey="user_id" Type="user_favourite" />
     </Type>
@@ -28,6 +28,7 @@
       <Column Name="num_views" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="is_accepted_answer" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="created_at" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Member="title" Type="System.String" CanBeNull="false" />
       <Association Name="user_post_user_favourite" Member="user_favourites" ThisKey="id" OtherKey="user_post_id" Type="user_favourite" />
       <Association Name="user_post_user_post_tag" Member="user_post_tags" ThisKey="id" OtherKey="user_post_id" Type="user_post_tag" />
       <Association Name="user_user_post" Member="user" ThisKey="user_id" OtherKey="id" Type="user" IsForeignKey="true" />

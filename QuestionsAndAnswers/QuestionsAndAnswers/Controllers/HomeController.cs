@@ -15,6 +15,7 @@ namespace QuestionsAndAnswers.Controllers
 
             // users
             var dataContext = new DataClasses1DataContext();
+
             var users = from m in dataContext.users
                          select m;
             ViewBag.users = users;
