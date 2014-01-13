@@ -75,6 +75,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses1.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\TagRepository.cs" />
+    <Compile Include="Models\UserPostRepository.cs" />
+    <Compile Include="Models\UserPostViewModel.cs" />
+    <Compile Include="Models\UserRepository.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

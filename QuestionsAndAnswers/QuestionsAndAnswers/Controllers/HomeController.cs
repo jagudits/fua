@@ -16,37 +16,22 @@ namespace QuestionsAndAnswers.Controllers
             // users
             var dataContext = new DataClasses1DataContext();
 
-            var users = from m in dataContext.users
-                         select m;
-            ViewBag.users = users;
+            UserRepository userRepo = new UserRepository();
+            ViewBag.users = userRepo.FindActiveUsers();
 
             // top questions
-            var topQuestions = from post
-                               in dataContext.user_posts
-                               where post.parent_post_id == 0
-                               orderby post.ranking_points descending
-                               select post;
-            ViewBag.topQuestions = topQuestions;
+            UserPostRepository userPostRepo = new UserPostRepository();
+            ViewBag.topQuestions = userPostRepo.FindTopQuestions(10);
 
             // newest questions
-            var newestQuestions = from post
-                                      in dataContext.user_posts
-                                      where post.parent_post_id == 0
-                                      orderby post.created_at descending
-                                      select post;
-            ViewBag.newestQuestions = newestQuestions;
+            ViewBag.newestQuestions = userPostRepo.FindLatestQuestions(10); ;
 
             // newest answers
-            ViewBag.newestAnswers = from post
-                                    in dataContext.user_posts
-                                    where post.parent_post_id != 0
-                                    orderby post.created_at descending
-                                    select post;
+            ViewBag.newestAnswers = userPostRepo.FindLatestAnswers(10); ;
 
             // tags
-            ViewBag.tags = from item
-                           in dataContext.tags
-                           select item;
+            TagRepository tagRepo = new TagRepository();
+            ViewBag.tags = tagRepo.FindAllTags();
 
             return View();
         }
