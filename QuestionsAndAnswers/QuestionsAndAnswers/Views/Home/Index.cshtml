@@ -16,20 +16,41 @@
     {
         <li>@question.content</li>
     }
-
     </ul>
-
   </div>
+
   <div id="tabs-2">
     <p>The NEWEST QUESTIONS are going to be shown here.</p>
+    <ul>
+    @foreach (var question in ViewBag.newestQuestions)
+    {
+        <li>@question.content</li>
+    }
+    </ul>
   </div>
+
   <div id="tabs-3">
     <p>The NEWEST ANSWERS are going to be shown here.</p>
+    <ul>
+    @foreach (var item in ViewBag.newestAnswers)
+    {
+        <li>@item.content</li>
+    }
+    </ul>
   </div>
+
   <div id="tabs-4">
     <p>The TAGS are going to be shown here.</p>
+    <ul>
+    @foreach (var item in ViewBag.tags)
+    {
+        <li>@item.name</li>
+    }
+    </ul>
   </div>
 </div>
+
+@Html.ActionLink("... or ask your own question!", "Index", "Question")
 
 <ul>
 @foreach (var item in ViewBag.users)

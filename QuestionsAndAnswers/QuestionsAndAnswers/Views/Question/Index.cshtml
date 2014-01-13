@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Ask a new question!</h2>
+<form action="/" method="post">
+    Title:<input type="text" name="firstname"><br>
+          <textarea rows="10" cols="30" name="content">Put your question here ...</textarea><br>
+    Tag(s): some added tags will be shown here
+    <input type="button" value="Or add tag ->"><input type="text" name="tag"><br>
+    <input type="submit" value="Send question">
+    <input type="button" value="Cancel">
+</form>
