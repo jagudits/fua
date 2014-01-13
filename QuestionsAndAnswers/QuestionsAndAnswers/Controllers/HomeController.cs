@@ -11,13 +11,21 @@ namespace QuestionsAndAnswers.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to ASP.NET MVC!";
+            ViewBag.Message = "Welcome to QuestionsAndAnswers!";
 
+            // users
             var dataContext = new DataClasses1DataContext();
             var users = from m in dataContext.users
                          select m;
-
             ViewBag.users = users;
+
+            var topQuestions = from post
+                               in dataContext.user_posts
+                               where post.parent_post_id == 0
+                               orderby post.ranking_points descending
+                               select post;
+            Console.WriteLine(topQuestions.ToString());
+            ViewBag.topQuestions = topQuestions;
 
             return View();
         }

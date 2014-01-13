@@ -1,6 +1,36 @@
 ﻿@{
-    ViewBag.Title = "HOME PAGE";
+    ViewBag.Title = "QuestionsAndAnswers";
 }
+
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Top Questions</a></li>
+    <li><a href="#tabs-2">Newest Questions</a></li>
+    <li><a href="#tabs-3">Newest Answers</a></li>
+    <li><a href="#tabs-4">Tags</a></li>
+  </ul>
+  <div id="tabs-1">
+    <p>The TOP QUESTIONS are going to be shown here.</p>
+    <ul>
+    @foreach (var question in ViewBag.topQuestions)
+    {
+        <li>@question.content</li>
+    }
+
+    </ul>
+
+  </div>
+  <div id="tabs-2">
+    <p>The NEWEST QUESTIONS are going to be shown here.</p>
+  </div>
+  <div id="tabs-3">
+    <p>The NEWEST ANSWERS are going to be shown here.</p>
+  </div>
+  <div id="tabs-4">
+    <p>The TAGS are going to be shown here.</p>
+  </div>
+</div>
+
 <ul>
 @foreach (var item in ViewBag.users)
 {
