@@ -5,7 +5,7 @@ using System.Web;
 
 namespace QuestionsAndAnswers.Models
 {
-    public class TagRepository
+    public class TagRepository : ITagRepository
     {
         private DataClasses1DataContext db = new DataClasses1DataContext();
 

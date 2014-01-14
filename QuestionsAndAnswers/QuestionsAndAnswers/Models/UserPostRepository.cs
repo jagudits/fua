@@ -5,7 +5,7 @@ using System.Web;
 
 namespace QuestionsAndAnswers.Models
 {
-    public class UserPostRepository
+    public class UserPostRepository : IUserPostRepository
     {
         private DataClasses1DataContext db = new DataClasses1DataContext();
 

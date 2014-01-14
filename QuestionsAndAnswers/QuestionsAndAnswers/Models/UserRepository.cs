@@ -7,7 +7,7 @@ namespace QuestionsAndAnswers.Models
 {
 
 
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private DataClasses1DataContext db = new DataClasses1DataContext();
 

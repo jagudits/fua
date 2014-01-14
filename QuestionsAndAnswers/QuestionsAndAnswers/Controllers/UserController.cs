@@ -14,6 +14,18 @@ namespace QuestionsAndAnswers.Controllers
     [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
     public class UserController : Controller
     {
+        IUserRepository userRepository;
+
+        public UserController()
+            : this(new UserRepository())
+        {
+        }
+
+        public UserController(IUserRepository aRepo)
+        {
+            userRepository = aRepo;
+        }
+
         //
         // GET: /Account/Register
 
@@ -36,8 +48,7 @@ namespace QuestionsAndAnswers.Controllers
                     model.ApplyChanges();
 
                     //if no exception was thrown, check if the user creation was successfuland redirect
-                    UserRepository repo = new UserRepository();
-                    user new_user = repo.GetByUsername(model.username);
+                    user new_user = userRepository.GetByUsername(model.username);
                     if (new_user != null)
                     {
                         return RedirectToAction("FakeUnlockMail", "User", new { id = new_user.id });
@@ -85,8 +96,7 @@ namespace QuestionsAndAnswers.Controllers
 
         public ActionResult FakeUnlockMail(int id)
         {
-            UserRepository repo = new UserRepository();
-            user user = repo.Get(id);
+            user user = userRepository.Get(id);
 
             //handle error
             if (user == null)
@@ -104,8 +114,7 @@ namespace QuestionsAndAnswers.Controllers
 
         public ActionResult UnlockUser(int id)
         {
-            UserRepository repo = new UserRepository();
-            user user = repo.Get(id);
+            user user = userRepository.Get(id);
 
             //handle error
             if (user == null) {
@@ -118,7 +127,7 @@ namespace QuestionsAndAnswers.Controllers
             {
                 model.is_active = true;
                 model.ApplyChanges();
-                repo.Save();
+                userRepository.Save();
             }
             catch (Exception e)
             {
@@ -142,9 +151,7 @@ namespace QuestionsAndAnswers.Controllers
 
         public JsonResult IsUsernameAvailable(string Username)
         {
-            UserRepository repo = new UserRepository();
-
-            if (!repo.UserExists(Username))
+            if (!userRepository.UserExists(Username))
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             string suggestedUID = String.Format(CultureInfo.InvariantCulture,
@@ -153,7 +160,7 @@ namespace QuestionsAndAnswers.Controllers
             for (int i = 1; i < 100; i++)
             {
                 string altCandidate = Username + i.ToString();
-                if (!repo.UserExists(altCandidate))
+                if (!userRepository.UserExists(altCandidate))
                 {
                     suggestedUID = String.Format(CultureInfo.InvariantCulture,
                    "{0} has already been taken. But {1} is still available!", Username, altCandidate);

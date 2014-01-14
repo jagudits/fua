@@ -10,14 +10,24 @@ namespace QuestionsAndAnswers.Controllers
 {
     public class UserPostController : Controller
     {
-        UserPostRepository userPostRepo = new UserPostRepository();
+        IUserPostRepository userPostRepository;
+
+        public UserPostController()
+            : this(new UserPostRepository())
+        {
+        }
+
+        public UserPostController(IUserPostRepository aRepo)
+        {
+            userPostRepository = aRepo;
+        }
 
         //
         // GET: /Question/
 
         public ActionResult Index()
         {
-            ViewBag.allQuestions = userPostRepo.FindAllUserPosts();
+            ViewBag.allQuestions = userPostRepository.FindAllUserPosts();
 
             return View();
         }
@@ -48,7 +58,7 @@ namespace QuestionsAndAnswers.Controllers
 
         public ActionResult Details(int id)
         {
-            var userPost = userPostRepo.Get(id);
+            var userPost = userPostRepository.Get(id);
             if (userPost == null)
                 return View();
             else
