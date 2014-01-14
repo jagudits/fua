@@ -3,23 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
-using System;
 using System.Web.Mvc;
 
 namespace QuestionsAndAnswers.Models
 {
     public class UserViewModel
     {
-        private int id { get; private set; }
+        public int id { get; private set; }
+
         [Required]
+        [Display(Name = "User name")]
         private string username { get; set; }
 
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
         private string password { get; set; }
 
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm new password")]
+        [Compare("password", ErrorMessage = "The new password and confirmation password do not match.")]
         private string password_retype { get; set; }
 
         private System.DateTime created_at { get; set; }
+
         [Required]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email address")]
         private string email_address { get; set; }
 
         private bool is_admin { get; set; }
@@ -54,7 +64,7 @@ namespace QuestionsAndAnswers.Models
 
         public void ApplyPassword(user obj, ModelStateDictionary modelState)
         {
-            if (string.IsNullOrEmpty(password)) modelState.AddModelError("Password", "Password is required");
+            if (string.IsNullOrEmpty(password)) modelState.AddModelError("password", "Password is required");
             if (string.IsNullOrEmpty(password_retype)) modelState.AddModelError("password_retype", "Please try again");
             if (password_retype != password) modelState.AddModelError("password_retype", "Must be the same as Password");
 

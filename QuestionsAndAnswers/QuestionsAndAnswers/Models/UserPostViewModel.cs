@@ -9,11 +9,14 @@ namespace QuestionsAndAnswers.Models
     public class UserPostViewModel
     {
         public int id { get; private set; }
+
         [Required]
         public int user_id { get; set; }
 
         public System.Nullable<int> parent_post_id { get; set; }
+
         [Required]
+        [Display(Name = "Content")]
         public string content { get; set; }
 
         public int ranking_points { get; set; }
@@ -25,6 +28,7 @@ namespace QuestionsAndAnswers.Models
         public System.DateTime created_at { get; set; }
 
         [Required]
+        [Display(Name = "Title")]
         public string title { get; set; }
 
         private user_post obj;

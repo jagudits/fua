@@ -65,7 +65,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\UserPostController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -168,7 +168,8 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Views\Home\Index2.cshtml" />
-    <Content Include="Views\Question\Index.cshtml" />
+    <Content Include="Views\UserPost\Index.cshtml" />
+    <Content Include="Views\UserPost\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
