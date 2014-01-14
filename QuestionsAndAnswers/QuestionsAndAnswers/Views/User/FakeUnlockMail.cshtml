@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "FakeUnlockMail";
+}
+
+<h2>Unlock your Useraccount, @ViewBag.user.username!</h2>
+
+[ @Html.ActionLink("Unlock account by clicking here", "UnlockUser", "User", new { id = ViewBag.user.id }, null) ]

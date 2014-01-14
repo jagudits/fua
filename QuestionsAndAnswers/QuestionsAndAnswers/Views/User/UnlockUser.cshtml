@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "UnlockUser";
+}
+
+<h2>Account unlocked</h2>
+<p>
+Congratulations, @ViewBag.user.username!<br />
+Your account has been unlocked. Please proceed to the<br />
+[ @Html.ActionLink("Log on page", "LogOn", "User") ]<br />
+to log on!
+</p>

@@ -283,7 +283,7 @@ namespace QuestionsAndAnswers.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int id
 		{
 			get
@@ -700,7 +700,7 @@ namespace QuestionsAndAnswers.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_created_at", DbType="DateTime NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_created_at", DbType="DateTime NOT NULL", IsDbGenerated=true)]
 		public System.DateTime created_at
 		{
 			get

@@ -40,5 +40,12 @@ namespace QuestionsAndAnswers.Controllers
         {
             return View();
         }
+
+        public ActionResult Error(string msg = "No description available.")
+        {
+            ViewBag.msg = msg;
+
+            return View();
+        }
     }
 }

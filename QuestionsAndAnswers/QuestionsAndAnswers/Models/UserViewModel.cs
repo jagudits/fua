@@ -12,6 +12,7 @@ namespace QuestionsAndAnswers.Models
         public int id { get; private set; }
 
         [Required]
+        [Remote("IsUsernameAvailable", "User")]
         [Display(Name = "User name")]
         public string username { get; set; }
 
@@ -58,9 +59,6 @@ namespace QuestionsAndAnswers.Models
         public void ApplyChanges()
         {
             UserRepository repo = new UserRepository();
-
-            
-            this.is_active = true;
 
             obj.username = this.username;
             //obj.created_at = new DateTime();

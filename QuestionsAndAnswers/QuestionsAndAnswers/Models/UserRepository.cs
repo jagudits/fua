@@ -23,6 +23,20 @@ namespace QuestionsAndAnswers.Models
                    where m.is_active == true
                    select m;
         }
+        public user GetByUsername(string username)
+        {
+            return (from m in db.users
+                    where m.username == username
+                    select m).Single();
+        }
+        public bool UserExists(string username)
+        {
+            int cnt = (from m in db.users
+                       where m.username == username
+                       select m).Count();
+
+            return (cnt > 0 ? true : false);
+        }
 
         public user Get(int id)
         {
