@@ -63,7 +63,8 @@ namespace QuestionsAndAnswers.Models
             this.is_active = true;
 
             obj.username = this.username;
-            obj.created_at = new DateTime();
+            //obj.created_at = new DateTime();
+            obj.created_at = DateTime.Now;
             obj.email_address = this.email_address;
             obj.is_admin = this.is_admin;
             obj.is_active = this.is_active;
