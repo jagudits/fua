@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.Security;
 using QuestionsAndAnswers.Models;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace QuestionsAndAnswers.Controllers
 {
@@ -117,10 +118,11 @@ namespace QuestionsAndAnswers.Controllers
             {
                 model.is_active = true;
                 model.ApplyChanges();
+                repo.Save();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return RedirectToAction("Error", "Home", new { msg = "Exception caught while saving data:"+Exception. });
+                return RedirectToAction("Error", "Home", new { msg = "Exception caught while saving data: "+e.Message });
             }
 
 

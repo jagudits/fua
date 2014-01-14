@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using System.Diagnostics;
 
 namespace QuestionsAndAnswers.Models
 {
@@ -47,6 +48,8 @@ namespace QuestionsAndAnswers.Models
 
         public UserViewModel(user obj)
         {
+            this.obj = obj;
+
             this.id = obj.id;
             this.username = obj.username;
             this.password = obj.password;
@@ -59,18 +62,19 @@ namespace QuestionsAndAnswers.Models
         public void ApplyChanges()
         {
             UserRepository repo = new UserRepository();
-
             obj.username = this.username;
-            //obj.created_at = new DateTime();
-            obj.created_at = DateTime.Now;
             obj.email_address = this.email_address;
             obj.is_admin = this.is_admin;
+            Debug.WriteLine("internal is active = "+(this.is_active));
             obj.is_active = this.is_active;
+            Debug.WriteLine("object is active = " + (obj.is_active));
             obj.password = this.password;
 
-            repo.Add(obj);
-            
-
+            if (obj.id == 0)
+            {
+                Debug.WriteLine("id is null, adding user");
+                repo.Add(obj);
+            }
             repo.Save();
 
         }
