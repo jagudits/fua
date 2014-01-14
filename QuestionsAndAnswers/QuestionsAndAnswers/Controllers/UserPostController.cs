@@ -31,6 +31,19 @@ namespace QuestionsAndAnswers.Controllers
         }
 
         //
+        // POST: /Question/Create
+
+        [HttpPost]
+        public ActionResult Create(UserPostViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+            return View(model);
+        }
+                
+        //
         // GET: /Question/Details/2
 
         public ActionResult Details(int id)

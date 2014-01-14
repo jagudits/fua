@@ -13,33 +13,35 @@ namespace QuestionsAndAnswers.Models
 
         [Required]
         [Display(Name = "User name")]
-        private string username { get; set; }
+        public string username { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
-        private string password { get; set; }
+        public string password { get; set; }
 
+        [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm new password")]
         [Compare("password", ErrorMessage = "The new password and confirmation password do not match.")]
-        private string password_retype { get; set; }
+        public string password_retype { get; set; }
 
-        private System.DateTime created_at { get; set; }
+        public System.DateTime created_at { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email address")]
-        private string email_address { get; set; }
+        public string email_address { get; set; }
 
-        private bool is_admin { get; set; }
+        public bool is_admin { get; set; }
 
-        private bool is_active { get; set; }
+        public bool is_active { get; set; }
 
         private user obj;
 
         public UserViewModel()
         {
+            obj = new user();
         }
 
         public UserViewModel(user obj)
@@ -53,22 +55,25 @@ namespace QuestionsAndAnswers.Models
             this.is_active = obj.is_active;
         }
 
-        public void ApplyChanges(user obj)
+        public void ApplyChanges()
         {
+            UserRepository repo = new UserRepository();
+
+            
+            this.is_active = true;
+
             obj.username = this.username;
-            obj.created_at = this.created_at;
+            obj.created_at = new DateTime();
             obj.email_address = this.email_address;
             obj.is_admin = this.is_admin;
             obj.is_active = this.is_active;
-        }
+            obj.password = this.password;
 
-        public void ApplyPassword(user obj, ModelStateDictionary modelState)
-        {
-            if (string.IsNullOrEmpty(password)) modelState.AddModelError("password", "Password is required");
-            if (string.IsNullOrEmpty(password_retype)) modelState.AddModelError("password_retype", "Please try again");
-            if (password_retype != password) modelState.AddModelError("password_retype", "Must be the same as Password");
+            repo.Add(obj);
+            
 
-            obj.password = password;
+            repo.Save();
+
         }
     }
 }
