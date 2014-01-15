@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Autofac;
+using Autofac.Integration.Mvc;
+using QuestionsAndAnswers.Models;
 
 namespace QuestionsAndAnswers
 {
@@ -31,6 +34,17 @@ namespace QuestionsAndAnswers
 
         protected void Application_Start()
         {
+            // autofac stuff
+            var builder = new ContainerBuilder();
+            builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            builder.RegisterType<TagRepository>().As<ITagRepository>();
+            builder.RegisterType<UserRepository>().As<IUserRepository>();
+            builder.RegisterType<UserPostRepository>().As<IUserPostRepository>();
+
+            var container = builder.Build();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+
+
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);

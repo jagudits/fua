@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using System.Diagnostics;
+using System.Web.Security;
 
 namespace QuestionsAndAnswers.Models
 {
@@ -41,6 +42,8 @@ namespace QuestionsAndAnswers.Models
 
         private user obj;
 
+        private IUserRepository userRepository = new UserRepository();
+
         public UserViewModel()
         {
             obj = new user();
@@ -61,11 +64,10 @@ namespace QuestionsAndAnswers.Models
 
         public void ApplyChanges()
         {
-            UserRepository repo = new UserRepository();
             obj.username = this.username;
             obj.email_address = this.email_address;
             obj.is_admin = this.is_admin;
-            Debug.WriteLine("internal is active = "+(this.is_active));
+            Debug.WriteLine("internal is active = "+ (this.is_active));
             obj.is_active = this.is_active;
             Debug.WriteLine("object is active = " + (obj.is_active));
             obj.password = this.password;
@@ -73,10 +75,17 @@ namespace QuestionsAndAnswers.Models
             if (obj.id == 0)
             {
                 Debug.WriteLine("id is null, adding user");
-                repo.Add(obj);
+                obj.created_at = DateTime.Now;
+                userRepository.Add(obj);
             }
-            repo.Save();
+            userRepository.Save();
 
+        }
+
+        public bool isLoggedOn() { 
+            //return FormsAuthentication.
+
+            return true;
         }
     }
 }

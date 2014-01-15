@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,17 +23,17 @@ namespace QuestionsAndAnswers.Controllers
         }
 
         //
-        // GET: /Question/
+        // GET: /UserPost/
 
         public ActionResult Index()
         {
-            ViewBag.allQuestions = userPostRepository.FindAllUserPosts();
+            ViewBag.allUserPosts = userPostRepository.FindAllUserPosts();
 
             return View();
         }
 
         //
-        // GET: /Question/
+        // GET: /UserPost/Create
 
         public ActionResult Create()
         {
@@ -41,29 +41,44 @@ namespace QuestionsAndAnswers.Controllers
         }
 
         //
-        // POST: /Question/Create
+        // POST: /UserPost/Create
 
         [HttpPost]
         public ActionResult Create(UserPostViewModel model)
         {
             if (ModelState.IsValid)
             {
+                model.ApplyChanges();
 
+                // what TODO
+                // should we check successful creation?
+                // should we redirect somewhere?
             }
             return View(model);
         }
-                
+
         //
-        // GET: /Question/Details/2
+        // GET: /UserPost/Details/2
 
         public ActionResult Details(int id)
         {
             var userPost = userPostRepository.Get(id);
             if (userPost == null)
-                return View();
+                return View("NotFound");
             else
-                return View();
+                return View(userPost);
         }
 
+        //
+        // GET: /UserPost/Edit/2
+
+        public ActionResult Edit(int id)
+        {
+            var userPost = userPostRepository.Get(id);
+            if (userPost == null)
+                return View("NotFound");
+            else
+                return View(userPost);
+        }
     }
 }

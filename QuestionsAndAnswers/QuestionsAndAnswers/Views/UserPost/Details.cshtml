@@ -1,0 +1,65 @@
+﻿@model QuestionsAndAnswers.Models.user_post
+
+@{
+    ViewBag.Title = "Post Details";
+}
+
+<h2>Post Details</h2>
+
+<fieldset>
+    <legend>Post Details</legend>
+
+    <div class="display-label">
+        @Html.LabelFor(m => m.title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.title)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(m => m.content)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.content)
+    </div>
+
+    <div class="display-label">
+        //@Html.LabelFor(m => m.user_id)
+        Created by:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.user_id)
+    </div>
+
+    <div class="display-label">parent_post_id</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.parent_post_id)
+    </div>
+
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.ranking_points)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ranking_points)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.is_accepted_answer)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.is_accepted_answer)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.created_at)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.created_at)
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    <a href="#" onclick="goBack()">Back</a>
+</p>

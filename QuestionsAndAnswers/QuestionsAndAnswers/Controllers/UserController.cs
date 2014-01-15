@@ -79,8 +79,22 @@ namespace QuestionsAndAnswers.Controllers
         {
             if (ModelState.IsValid)
             {
+                //set cookie
+                FormsAuthentication.SetAuthCookie(model.username + "QandA", false);
             }
             return View(model);
+        }
+
+
+
+        //
+        // GET: /Account/LogOff
+
+        public ActionResult LogOff()
+        {
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("Index", "Home");
         }
 
         //
@@ -117,7 +131,8 @@ namespace QuestionsAndAnswers.Controllers
             user user = userRepository.Get(id);
 
             //handle error
-            if (user == null) {
+            if (user == null)
+            {
                 return RedirectToAction("Error", "Home", new { msg = "User object was null..." });
             }
 
@@ -131,13 +146,12 @@ namespace QuestionsAndAnswers.Controllers
             }
             catch (Exception e)
             {
-                return RedirectToAction("Error", "Home", new { msg = "Exception caught while saving data: "+e.Message });
+                return RedirectToAction("Error", "Home", new { msg = "Exception caught while saving data: " + e.Message });
             }
 
 
             ViewBag.user = model;
-            //set cookie
-            //FormsAuthentication.SetAuthCookie(model.username + "QandA", false);
+            
 
 
             return View();

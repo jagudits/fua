@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -54,7 +54,8 @@ namespace QuestionsAndAnswers.Models
             user.is_active = false;
         }
         // Persistence
-        public void Save() {
+        public void Save()
+        {
             db.SubmitChanges();
         }
     }

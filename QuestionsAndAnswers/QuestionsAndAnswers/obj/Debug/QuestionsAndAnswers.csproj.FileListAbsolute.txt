@@ -5,9 +5,26 @@ C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\bin\
 C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\obj\Debug\QuestionsAndAnswers.csprojResolveAssemblyReference.cache
 C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\obj\Debug\QuestionsAndAnswers.dll
 C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\obj\Debug\QuestionsAndAnswers.pdb
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers_new\QuestionsAndAnswers\bin\QuestionsAndAnswers.dll
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers_new\QuestionsAndAnswers\bin\QuestionsAndAnswers.pdb
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers_new\QuestionsAndAnswers\bin\EntityFramework.dll
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers_new\QuestionsAndAnswers\bin\EntityFramework.xml
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers_new\QuestionsAndAnswers\obj\Debug\QuestionsAndAnswers.csprojResolveAssemblyReference.cache
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers_new\QuestionsAndAnswers\obj\Debug\QuestionsAndAnswers.dll
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers_new\QuestionsAndAnswers\obj\Debug\QuestionsAndAnswers.pdb
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers_new\qandanew\QuestionsAndAnswers\bin\QuestionsAndAnswers.dll
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers_new\qandanew\QuestionsAndAnswers\bin\QuestionsAndAnswers.pdb
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers_new\qandanew\QuestionsAndAnswers\bin\EntityFramework.xml
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers_new\qandanew\QuestionsAndAnswers\obj\Debug\QuestionsAndAnswers.csprojResolveAssemblyReference.cache
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers_new\qandanew\QuestionsAndAnswers\obj\Debug\QuestionsAndAnswers.dll
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers_new\qandanew\QuestionsAndAnswers\obj\Debug\QuestionsAndAnswers.pdb
 D:\jagudits\My Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\bin\QuestionsAndAnswers.dll
 D:\jagudits\My Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\bin\QuestionsAndAnswers.pdb
+D:\jagudits\My Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\bin\Autofac.Configuration.dll
+D:\jagudits\My Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\bin\Autofac.dll
+D:\jagudits\My Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\bin\Autofac.Integration.Mvc.dll
 D:\jagudits\My Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\bin\EntityFramework.dll
+D:\jagudits\My Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\bin\Autofac.xml
 D:\jagudits\My Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\bin\EntityFramework.xml
 D:\jagudits\My Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\obj\Debug\ResolveAssemblyReference.cache
 D:\jagudits\My Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\obj\Debug\QuestionsAndAnswers.dll

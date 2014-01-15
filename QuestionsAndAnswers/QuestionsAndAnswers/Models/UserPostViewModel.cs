@@ -33,12 +33,16 @@ namespace QuestionsAndAnswers.Models
 
         private user_post obj;
 
+        private IUserPostRepository userPostRepository = new UserPostRepository();
+
         public UserPostViewModel()
         {
+            obj = new user_post();
         }
 
         public UserPostViewModel(user_post obj)
         {
+            this.obj = obj;
             this.id = obj.id;
             this.user_id = obj.user_id;
             this.parent_post_id = obj.parent_post_id;
@@ -49,14 +53,21 @@ namespace QuestionsAndAnswers.Models
             this.created_at = obj.created_at;
         }
 
-        public void ApplyChanges(user_post obj)
+        public void ApplyChanges()
         {
-            obj.user_id = this.user_id;
             obj.parent_post_id = this.parent_post_id;
             obj.content = this.content;
             obj.ranking_points = this.ranking_points;
             obj.num_views = this.num_views;
             obj.is_accepted_answer = this.is_accepted_answer;
+
+            if (obj.id == 0)
+            {
+                obj.created_at = DateTime.Now;
+                userPostRepository.Add(obj);
+            }
+            userPostRepository.Save();
+
         }
     }
 }

@@ -1,49 +1,90 @@
-﻿@model QuestionsAndAnswers.Models.UserPostViewModel
+﻿@model QuestionsAndAnswers.Models.user_post
 
 @{
     ViewBag.Title = "Create";
 }
 
 <h2>Create</h2>
-<h2>Ask a new question!</h2>
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
 @using (Html.BeginForm())
 {
-    @Html.ValidationSummary(true, "Question creation was unsuccessful. Please correct the errors and try again.")
-    <div>
-        <fieldset>
-            <legend>Question Information</legend>
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>user_post</legend>
 
-            <!-- Title:<input type="text" name="title"><br> -->
-            <div class="editor-label">
-                @Html.LabelFor(m => m.title)
-            </div>
-            <div class="editor-field">
-                @Html.TextBoxFor(m => m.title)
-                @Html.ValidationMessageFor(m => m.title)
-            </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.user_id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.user_id)
+            @Html.ValidationMessageFor(model => model.user_id)
+        </div>
 
-            <!-- <textarea rows="10" cols="30" name="content">Put your question here ...</textarea><br> -->
-            <div class="editor-label">
-                @Html.LabelFor(m => m.content)
-            </div>
-            <div class="text-box">
-                @Html.TextArea("content")
-                @Html.ValidationMessageFor(m => m.content)
-            </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.parent_post_id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.parent_post_id)
+            @Html.ValidationMessageFor(model => model.parent_post_id)
+        </div>
 
-            <!-- Tag(s): some added tags will be shown here -->
-            <div class="editor-label">
-                @Html.Label("Tag(s):")
-                @Html.Label("some added tags will be shown here")
-            </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.content)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.content)
+            @Html.ValidationMessageFor(model => model.content)
+        </div>
 
-            <input type="button" value="Or add tag ->" /><input type="text" name="tag" /><br />
-            <input type="submit" value="Send question" />
-            <input type="button" value="Cancel" />
-        </fieldset>
-    </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ranking_points)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ranking_points)
+            @Html.ValidationMessageFor(model => model.ranking_points)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.num_views)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.num_views)
+            @Html.ValidationMessageFor(model => model.num_views)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.is_accepted_answer)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.is_accepted_answer)
+            @Html.ValidationMessageFor(model => model.is_accepted_answer)
+        </div>
+<!--
+        <div class="editor-label">
+            @Html.LabelFor(model => model.created_at)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.created_at)
+            @Html.ValidationMessageFor(model => model.created_at)
+        </div>
+-->
+        <div class="editor-label">
+            @Html.LabelFor(model => model.title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.title)
+            @Html.ValidationMessageFor(model => model.title)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
 }
+
+<div>
+    <a href="#" onclick="goBack()">Back</a>
+</div>

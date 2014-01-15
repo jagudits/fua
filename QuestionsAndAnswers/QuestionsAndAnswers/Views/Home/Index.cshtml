@@ -14,7 +14,7 @@
     <ul>
     @foreach (var question in ViewBag.topQuestions)
     {
-        <li>@question.content</li>
+        <li>@Html.ActionLink((String)question.title, "Details", "UserPost", new {id=question.id}, null)</li>
     }
     </ul>
   </div>
@@ -24,7 +24,7 @@
     <ul>
     @foreach (var question in ViewBag.newestQuestions)
     {
-        <li>@question.content</li>
+        <li>@Html.ActionLink((String)question.title, "Details", "UserPost", new { id = question.id }, null)</li>
     }
     </ul>
   </div>
@@ -34,7 +34,7 @@
     <ul>
     @foreach (var item in ViewBag.newestAnswers)
     {
-        <li>@item.content</li>
+        <li>@Html.ActionLink((String)item.title, "Details", "UserPost", new { id = item.id }, null)</li>
     }
     </ul>
   </div>

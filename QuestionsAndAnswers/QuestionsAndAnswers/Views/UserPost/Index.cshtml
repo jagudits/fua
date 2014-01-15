@@ -1,5 +1,75 @@
-﻿@{
-    ViewBag.Title = "UserPost Index";
-}
-<h2> UserPost Index</h2>
+﻿@model IEnumerable<QuestionsAndAnswers.Models.user_post>
 
+@{
+    ViewBag.Title = "All user posts";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            user_id
+        </th>
+        <th>
+            parent_post_id
+        </th>
+        <th>
+            content
+        </th>
+        <th>
+            ranking_points
+        </th>
+        <th>
+            num_views
+        </th>
+        <th>
+            is_accepted_answer
+        </th>
+        <th>
+            created_at
+        </th>
+        <th>
+            title
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.user_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.parent_post_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.content)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ranking_points)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.num_views)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_accepted_answer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.created_at)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

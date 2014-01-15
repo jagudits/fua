@@ -9,6 +9,22 @@ namespace QuestionsAndAnswers.Controllers
 {
     public class HomeController : Controller
     {
+        IUserRepository userRepository;
+        IUserPostRepository userPostRepository;
+        ITagRepository tagRepository;
+
+        public HomeController()
+            : this(new UserRepository(), new UserPostRepository(), new TagRepository())
+        {
+        }
+
+        public HomeController(IUserRepository uRepo, IUserPostRepository upRepo, ITagRepository tRepo)
+        {
+            userRepository = uRepo;
+            userPostRepository = upRepo;
+            tagRepository = tRepo;
+        }
+
         public ActionResult Index()
         {
             ViewBag.Message = "Welcome to QuestionsAndAnswers!";
@@ -16,22 +32,19 @@ namespace QuestionsAndAnswers.Controllers
             // users
             var dataContext = new DataClasses1DataContext();
 
-            UserRepository userRepo = new UserRepository();
-            ViewBag.users = userRepo.FindActiveUsers();
+            ViewBag.users = userRepository.FindActiveUsers();
 
             // top questions
-            UserPostRepository userPostRepo = new UserPostRepository();
-            ViewBag.topQuestions = userPostRepo.FindTopQuestions(10);
+            ViewBag.topQuestions = userPostRepository.FindTopQuestions(10);
 
             // newest questions
-            ViewBag.newestQuestions = userPostRepo.FindLatestQuestions(10); ;
+            ViewBag.newestQuestions = userPostRepository.FindLatestQuestions(10); ;
 
             // newest answers
-            ViewBag.newestAnswers = userPostRepo.FindLatestAnswers(10); ;
+            ViewBag.newestAnswers = userPostRepository.FindLatestAnswers(10); ;
 
             // tags
-            TagRepository tagRepo = new TagRepository();
-            ViewBag.tags = tagRepo.FindAllTags();
+            ViewBag.tags = tagRepository.FindAllTags();
 
             return View();
         }
