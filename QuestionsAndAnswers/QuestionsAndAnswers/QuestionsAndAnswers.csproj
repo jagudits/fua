@@ -89,9 +89,11 @@
     <Compile Include="Models\IUserPostRepository.cs" />
     <Compile Include="Models\IUserRepository.cs" />
     <Compile Include="Models\TagRepository.cs" />
+    <Compile Include="Models\UserListViewModel.cs" />
     <Compile Include="Models\UserPostRepository.cs" />
     <Compile Include="Models\UserPostViewModel.cs" />
     <Compile Include="Models\UserRepository.cs" />
+    <Compile Include="Models\UserSearchModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -189,6 +191,7 @@
     <Content Include="Views\UserPost\Edit.cshtml" />
     <Content Include="Views\UserPost\Create.cshtml" />
     <Content Include="Views\UserPost\Answer.cshtml" />
+    <Content Include="Views\User\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

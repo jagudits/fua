@@ -203,23 +203,25 @@ namespace QuestionsAndAnswers.Controllers
             }
 
 
-
-            return View(users);
+            UserListViewModel ulVM = new UserListViewModel();
+            ulVM.users = users;
+            
+            return View(ulVM);
         }
 
         //
         // POST: /User/List
 
         [HttpPost]
-        public ActionResult List(string search)
+        public ActionResult List(UserListViewModel ulVM)
         {
             if (!Request.IsAuthenticated || @Session["role"] != "Admin")
             {
                 return RedirectToAction("Error", "Home", new { msg = "You are not allowed to view this page..." });
             }
 
-            Debug.WriteLine("SEARCHT IS " + search);
-            System.Linq.IQueryable<user> list = userRepository.FindAllUsersWithWord(search);
+            Debug.WriteLine("SEARCHT IS " + ulVM.UserName);
+            System.Linq.IQueryable<user> list = userRepository.FindAllUsersWithWord(ulVM.UserName);
             UserViewModel[] users = new UserViewModel[list.Count()];
             int i = 0;
             foreach (user u in list)
@@ -228,9 +230,9 @@ namespace QuestionsAndAnswers.Controllers
                 i++;
             }
 
+            ulVM.users = users;
 
-
-            return View(users);
+            return View(ulVM);
         }
 
 

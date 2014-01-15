@@ -51,11 +51,3 @@
 </div>
 
 @Html.ActionLink("... or ask your own question!", "Create", "UserPost")
-
-<ul>
-@foreach (var item in ViewBag.users)
-{
-    <li>@item.username@(item.is_admin ? "(Admin)" : "")</li>
-}
-</ul>
-

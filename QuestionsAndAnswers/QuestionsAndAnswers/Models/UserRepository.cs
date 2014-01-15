@@ -22,7 +22,7 @@ namespace QuestionsAndAnswers.Models
         {
             return (from m in db.users
                    orderby m.username descending
-                   select m).Where(m => m.username.Contains('%'+word+'%'));
+                   select m).Where(m => m.username.Contains(word));
         }
         public System.Linq.IQueryable<user> FindActiveUsers()
         {
