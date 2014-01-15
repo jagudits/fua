@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using QuestionsAndAnswers.Models;
+using System.Diagnostics;
 
 
 namespace QuestionsAndAnswers.Controllers
@@ -50,7 +51,7 @@ namespace QuestionsAndAnswers.Controllers
             {
                 try
                 {
-                    model.ApplyChanges();
+                    model.AddNew();
                     // what TODO
                     // should we check successful creation?
                     // should we redirect somewhere?
@@ -91,16 +92,16 @@ namespace QuestionsAndAnswers.Controllers
         //
         // POST: /UserPost/Edit
         [HttpPost]
-        public ActionResult Edit(UserPostViewModel model)
+        public ActionResult Edit(int id, UserPostViewModel model)
         {
+            user_post toEdit = userPostRepository.Get(id);
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    model.ApplyChanges();
-                    // what TODO
-                    // should we check successful creation?
-                    // should we redirect somewhere?
+                    model.ApplyChanges(toEdit);
+                    userPostRepository.Save();
                 }
                 catch (Exception)
                 {
@@ -139,7 +140,7 @@ namespace QuestionsAndAnswers.Controllers
             {
                 try
                 {
-                    model.ApplyChanges();
+                    model.AddNew();
                     // what TODO
                     // should we check successful creation?
                     // should we redirect somewhere?

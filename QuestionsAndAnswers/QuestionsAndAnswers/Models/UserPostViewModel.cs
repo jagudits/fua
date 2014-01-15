@@ -64,7 +64,7 @@ namespace QuestionsAndAnswers.Models
             this.created_at = obj.created_at;
         }
 
-        public void ApplyChanges()
+        public void AddNew()
         {
             obj.id = this.id; // ???
             // TODO should we set user_id here and this way?
@@ -76,13 +76,24 @@ namespace QuestionsAndAnswers.Models
             obj.num_views = this.num_views;
             obj.is_accepted_answer = this.is_accepted_answer;
 
-            Debug.WriteLine("ApplyChanges id is:" + id);
-            if (obj.id == 0)
-            {
-                obj.created_at = DateTime.Now;
-                userPostRepository.Add(obj);
-            }
+            obj.created_at = DateTime.Now;
+            userPostRepository.Add(obj);
             userPostRepository.Save();
+
+        }
+
+        public void ApplyChanges(user_post toEdit)
+        {
+            
+            // TODO should we set user_id here and this way?
+            toEdit.user_id = this.user_id;
+            toEdit.parent_post_id = this.parent_post_id;
+            toEdit.title = this.title;
+            toEdit.content = this.content;
+            toEdit.ranking_points = this.ranking_points;
+            toEdit.num_views = this.num_views;
+            toEdit.is_accepted_answer = this.is_accepted_answer;
+
 
         }
     }

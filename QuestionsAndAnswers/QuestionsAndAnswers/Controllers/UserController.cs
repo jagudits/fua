@@ -86,6 +86,21 @@ namespace QuestionsAndAnswers.Controllers
 
                     //set cookie
                     FormsAuthentication.SetAuthCookie(model.UserName, false);
+                    user user = userRepository.GetByUsername(model.UserName);
+
+                    if (!user.is_active) {
+                        return RedirectToAction("Error", "Home", new { msg = "Account not activated..." });
+                    }
+
+                    if (user.is_admin)
+                    {
+
+                        Session.Add("role", "Admin");
+                    }
+                    else {
+
+                        Session.Add("role", "User");
+                    }
 
                     return RedirectToAction("Index", "Home");
                 }
