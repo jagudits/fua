@@ -1,4 +1,4 @@
-﻿@model QuestionsAndAnswers.Models.user_post
+﻿@model QuestionsAndAnswers.Models.UserPostViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -17,7 +17,7 @@
         @Html.HiddenFor(model => model.id)
         @Html.HiddenFor(model => model.user_id)
         @Html.HiddenFor(model => model.parent_post_id)
-        @Html.LabelFor(model => model.num_views)
+        @Html.HiddenFor(model => model.num_views)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.title)

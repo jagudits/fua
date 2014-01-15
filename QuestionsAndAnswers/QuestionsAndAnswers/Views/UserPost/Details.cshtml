@@ -1,4 +1,4 @@
-﻿@model QuestionsAndAnswers.Models.user_post
+﻿@model QuestionsAndAnswers.Models.UserPostViewModel
 
 @{
     ViewBag.Title = "Post Details";
@@ -10,22 +10,21 @@
     <legend>Post Details</legend>
 
     <div class="display-label">
-        @Html.LabelFor(m => m.title)
+        @Html.LabelFor(model => model.title)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.title)
     </div>
 
     <div class="display-label">
-        @Html.LabelFor(m => m.content)
+        @Html.LabelFor(model => model.content)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.content)
     </div>
 
     <div class="display-label">
-        //@Html.LabelFor(m => m.user_id)
-        Created by:
+        @Html.LabelFor(model => model.user_id)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.user_id)

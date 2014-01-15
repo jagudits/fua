@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace QuestionsAndAnswers.Models
 {
@@ -11,6 +12,7 @@ namespace QuestionsAndAnswers.Models
         public int id { get; private set; }
 
         [Required]
+        [Display(Name = "Created by:")]
         public int user_id { get; set; }
 
         public System.Nullable<int> parent_post_id { get; set; }
@@ -19,12 +21,16 @@ namespace QuestionsAndAnswers.Models
         [Display(Name = "Content")]
         public string content { get; set; }
 
+        [Display(Name = "Ranking points:")]
         public int ranking_points { get; set; }
 
+        [Display(Name = "Number of views:")]
         public int num_views;
 
+        [Display(Name = "Accepted as answer:")]
         public bool is_accepted_answer { get; set; }
 
+        [Display(Name = "Created at:")]
         public System.DateTime created_at { get; set; }
 
         [Required]
@@ -38,14 +44,19 @@ namespace QuestionsAndAnswers.Models
         public UserPostViewModel()
         {
             obj = new user_post();
+
+            // TODO trick?
+            //obj.created_at = DateTime.Now;
         }
 
         public UserPostViewModel(user_post obj)
         {
             this.obj = obj;
+
             this.id = obj.id;
             this.user_id = obj.user_id;
             this.parent_post_id = obj.parent_post_id;
+            this.title = obj.title;
             this.content = obj.content;
             this.ranking_points = obj.ranking_points;
             this.num_views = obj.num_views;
@@ -55,12 +66,16 @@ namespace QuestionsAndAnswers.Models
 
         public void ApplyChanges()
         {
+            // TODO should we set user_id here and this way?
+            obj.user_id = this.user_id;
             obj.parent_post_id = this.parent_post_id;
+            obj.title = this.title;
             obj.content = this.content;
             obj.ranking_points = this.ranking_points;
             obj.num_views = this.num_views;
             obj.is_accepted_answer = this.is_accepted_answer;
 
+            Debug.WriteLine("ApplyChanges id is:" + id);
             if (obj.id == 0)
             {
                 obj.created_at = DateTime.Now;

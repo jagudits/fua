@@ -48,13 +48,21 @@ namespace QuestionsAndAnswers.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.ApplyChanges();
+                try
+                {
+                    model.ApplyChanges();
+                    
+                    // what TODO
+                    // should we check successful creation?
+                    // should we redirect somewhere?
+                }
+                catch (Exception)
+                {
+                    return RedirectToAction("Error", "Home", new { msg = "Exception adding post..." });
+                }
 
-                // what TODO
-                // should we check successful creation?
-                // should we redirect somewhere?
             }
-            return View(model);
+            return View("Details", model);
         }
 
         //
@@ -66,7 +74,7 @@ namespace QuestionsAndAnswers.Controllers
             if (userPost == null)
                 return View("NotFound");
             else
-                return View(userPost);
+                return View(new UserPostViewModel(userPost));
         }
 
         //
@@ -78,7 +86,7 @@ namespace QuestionsAndAnswers.Controllers
             if (userPost == null)
                 return View("NotFound");
             else
-                return View(userPost);
+                return View(new UserPostViewModel(userPost));
         }
     }
 }
