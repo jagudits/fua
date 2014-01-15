@@ -7,6 +7,7 @@ namespace QuestionsAndAnswers.Models
         void Delete(user user);
         System.Linq.IQueryable<user> FindActiveUsers();
         System.Linq.IQueryable<user> FindAllUsers();
+        System.Linq.IQueryable<user> FindAllUsersWithWord(string word);
         user Get(int id);
         user GetByUsername(string username);
         void Save();

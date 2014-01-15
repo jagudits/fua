@@ -183,6 +183,57 @@ namespace QuestionsAndAnswers.Controllers
 
 
 
+        //
+        // GET: /User/List
+
+        public ActionResult List()
+        {
+            if (!Request.IsAuthenticated || (string)(@Session["role"]) != "Admin")
+            {
+                return RedirectToAction("Error", "Home", new { msg = "You are not allowed to view this page..." });
+            }
+
+            System.Linq.IQueryable<user> list = userRepository.FindAllUsers();
+            UserViewModel[] users = new UserViewModel[list.Count()];
+            int i = 0;
+            foreach (user u in list)
+            {
+                users[i] = new UserViewModel(u);
+                i++;
+            }
+
+
+
+            return View(users);
+        }
+
+        //
+        // POST: /User/List
+
+        [HttpPost]
+        public ActionResult List(string search)
+        {
+            if (!Request.IsAuthenticated || @Session["role"] != "Admin")
+            {
+                return RedirectToAction("Error", "Home", new { msg = "You are not allowed to view this page..." });
+            }
+
+            Debug.WriteLine("SEARCHT IS " + search);
+            System.Linq.IQueryable<user> list = userRepository.FindAllUsersWithWord(search);
+            UserViewModel[] users = new UserViewModel[list.Count()];
+            int i = 0;
+            foreach (user u in list)
+            {
+                users[i] = new UserViewModel(u);
+                i++;
+            }
+
+
+
+            return View(users);
+        }
+
+
         /**
          *AJAX ACTIONS
          **/

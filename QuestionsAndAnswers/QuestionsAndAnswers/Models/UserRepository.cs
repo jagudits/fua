@@ -15,7 +15,14 @@ namespace QuestionsAndAnswers.Models
         public System.Linq.IQueryable<user> FindAllUsers()
         {
             return from m in db.users
+                   orderby m.username descending
                    select m;
+        }
+        public System.Linq.IQueryable<user> FindAllUsersWithWord(string word)
+        {
+            return (from m in db.users
+                   orderby m.username descending
+                   select m).Where(m => m.username.Contains('%'+word+'%'));
         }
         public System.Linq.IQueryable<user> FindActiveUsers()
         {
