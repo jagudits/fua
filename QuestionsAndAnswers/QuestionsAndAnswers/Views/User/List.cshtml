@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "List";
+}
+@model IEnumerable<QuestionsAndAnswers.Models.UserViewModel>
+
+<h2>Userlist</h2>
+<form action="/User/List" method="post">
+    <div>
+        <fieldset>
+            <legend>Search</legend>
+
+            <div class="editor-field">
+                <input type="text" name="search" />
+            </div>
+            <p>
+                <input type="submit" value="suchen" />
+            </p>
+        </fieldset>
+    </div>
+</form>
+
+<ul>
+@foreach (var user in Model) { 
+    <li>
+    
+    @Html.DisplayFor(modelItem => user.username)
+    </li>
+}
+</ul>
