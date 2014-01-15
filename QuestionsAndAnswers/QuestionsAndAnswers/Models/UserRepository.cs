@@ -53,6 +53,16 @@ namespace QuestionsAndAnswers.Models
         {
             user.is_active = false;
         }
+
+        public bool CheckPassword(string username, string password)
+        {
+            user user = GetByUsername(username);
+            if (user == null) {
+                return false;
+            }
+
+            return (user.password == password);
+        }
         // Persistence
         public void Save()
         {

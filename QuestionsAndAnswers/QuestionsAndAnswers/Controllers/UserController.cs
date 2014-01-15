@@ -68,6 +68,7 @@ namespace QuestionsAndAnswers.Controllers
 
         public ActionResult LogOn()
         {
+            ViewBag.msg = "";
             return View();
         }
 
@@ -75,13 +76,21 @@ namespace QuestionsAndAnswers.Controllers
         // POST: /Account/LogOn
 
         [HttpPost]
-        public ActionResult LogOn(UserViewModel model, string returnUrl)
+        public ActionResult LogOn(LogOnModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
-                //set cookie
-                FormsAuthentication.SetAuthCookie(model.username + "QandA", false);
+
+                if (userRepository.UserExists(model.UserName) && userRepository.CheckPassword(model.UserName, model.Password))
+                {
+
+                    //set cookie
+                    FormsAuthentication.SetAuthCookie(model.UserName, false);
+
+                    return RedirectToAction("Index", "Home");
+                }
             }
+            ViewBag.msg = "Wrong credentials. Please try again.";
             return View(model);
         }
 

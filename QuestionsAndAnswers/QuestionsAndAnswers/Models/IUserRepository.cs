@@ -10,6 +10,7 @@ namespace QuestionsAndAnswers.Models
         user Get(int id);
         user GetByUsername(string username);
         void Save();
+        bool CheckPassword(string username, string password);
         bool UserExists(string username);
     }
 }
