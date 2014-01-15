@@ -29,3 +29,7 @@ D:\jagudits\My Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\bin\
 D:\jagudits\My Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\obj\Debug\ResolveAssemblyReference.cache
 D:\jagudits\My Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\obj\Debug\QuestionsAndAnswers.dll
 D:\jagudits\My Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\obj\Debug\QuestionsAndAnswers.pdb
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\bin\Autofac.Configuration.dll
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\bin\Autofac.dll
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\bin\Autofac.Integration.Mvc.dll
+C:\Users\insel\Documents\GitHub\fua\QuestionsAndAnswers\QuestionsAndAnswers\bin\Autofac.xml
