@@ -12,15 +12,17 @@ namespace QuestionsAndAnswers.Controllers
     public class UserPostController : Controller
     {
         IUserPostRepository userPostRepository;
+        IUserRepository userRepository;
 
         public UserPostController()
-            : this(new UserPostRepository())
+            : this(new UserPostRepository(), new UserRepository())
         {
         }
 
-        public UserPostController(IUserPostRepository aRepo)
+        public UserPostController(IUserPostRepository upRepo, IUserRepository uRepo)
         {
-            userPostRepository = aRepo;
+            userPostRepository = upRepo;
+            userRepository = uRepo;
         }
 
         //
@@ -39,7 +41,15 @@ namespace QuestionsAndAnswers.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            if (Request.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                //return RedirectToAction("Error", "Home", new { msg = "Please log on for adding post..." });
+                return RedirectToAction("LogOn", "User", new { msg = "Please log on for adding post..." });
+            }
         }
 
         //
@@ -51,6 +61,12 @@ namespace QuestionsAndAnswers.Controllers
             {
                 try
                 {
+                    user userLoggedOn = userRepository.GetByUsername(User.Identity.Name);
+                    model.user_id = userLoggedOn.id;
+                    model.parent_post_id = 0;
+                    model.ranking_points = 0;
+                    model.num_views = 0;
+                    model.is_accepted_answer = false;
                     model.AddNew();
                     // what TODO
                     // should we check successful creation?
@@ -82,11 +98,19 @@ namespace QuestionsAndAnswers.Controllers
 
         public ActionResult Edit(int id)
         {
-            var userPost = userPostRepository.Get(id);
-            if (userPost == null)
-                return View("NotFound");
+            if (Request.IsAuthenticated)
+            {
+                var userPost = userPostRepository.Get(id);
+                if (userPost == null)
+                    return View("NotFound");
+                else
+                    return View(new UserPostViewModel(userPost));
+            }
             else
-                return View(new UserPostViewModel(userPost));
+            {
+                //return RedirectToAction("Error", "Home", new { msg = "Please log on for adding post..." });
+                return RedirectToAction("LogOn", "User", new { msg = "Please log on for adding post..." });
+            }
         }
 
         //
@@ -117,18 +141,27 @@ namespace QuestionsAndAnswers.Controllers
 
         public ActionResult Answer(int id)
         {
-            var question = userPostRepository.Get(id);
-            if (question == null)
+            if (Request.IsAuthenticated)
             {
-                return View("NotFound");
+                var question = userPostRepository.Get(id);
+                if (question == null)
+                {
+                    return View("NotFound");
+                }
+                else
+                {
+                    var answer = new UserPostViewModel();
+                    answer.parent_post_id = question.id;
+                    answer.title = "RE: " + question.title;
+                    return View(answer);
+                }
             }
             else
             {
-                var answer = new UserPostViewModel();
-                answer.parent_post_id = question.id;
-                answer.title = "RE: " + question.title;
-                return View(answer);
+                //return RedirectToAction("Error", "Home", new { msg = "Please log on for adding post..." });
+                return RedirectToAction("LogOn", "User", new { msg = "Please log on for adding post..." });
             }
+
         }
 
         //

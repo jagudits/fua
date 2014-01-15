@@ -31,21 +31,13 @@
             @Html.ValidationMessageFor(model => model.content)
         </div>
 
+<!--
         <div class="editor-label">
             @Html.LabelFor(model => model.user_id)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.user_id)
-            @Html.ValidationMessageFor(model => model.user_id)
-        </div>
+        @Html.DisplayFor(model => model.user_id)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.parent_post_id)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.parent_post_id)
-            @Html.ValidationMessageFor(model => model.parent_post_id)
-        </div>
+        @Html.HiddenFor(model => model.parent_post_id)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.ranking_points)
@@ -70,6 +62,7 @@
             @Html.EditorFor(model => model.is_accepted_answer)
             @Html.ValidationMessageFor(model => model.is_accepted_answer)
         </div>
+-->
 <!--
         <div class="editor-label">
             @Html.LabelFor(model => model.created_at)
