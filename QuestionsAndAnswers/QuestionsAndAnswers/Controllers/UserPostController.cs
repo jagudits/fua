@@ -28,8 +28,9 @@ namespace QuestionsAndAnswers.Controllers
         public ActionResult Index()
         {
             ViewBag.allUserPosts = userPostRepository.FindAllUserPosts();
+            // user_post should be wrapped into UserPostViewModel
 
-            return View();
+            return View(userPostRepository.FindAllUserPosts());
         }
 
         //
@@ -42,7 +43,6 @@ namespace QuestionsAndAnswers.Controllers
 
         //
         // POST: /UserPost/Create
-
         [HttpPost]
         public ActionResult Create(UserPostViewModel model)
         {
@@ -51,7 +51,6 @@ namespace QuestionsAndAnswers.Controllers
                 try
                 {
                     model.ApplyChanges();
-                    
                     // what TODO
                     // should we check successful creation?
                     // should we redirect somewhere?
@@ -88,5 +87,71 @@ namespace QuestionsAndAnswers.Controllers
             else
                 return View(new UserPostViewModel(userPost));
         }
+
+        //
+        // POST: /UserPost/Edit
+        [HttpPost]
+        public ActionResult Edit(UserPostViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    model.ApplyChanges();
+                    // what TODO
+                    // should we check successful creation?
+                    // should we redirect somewhere?
+                }
+                catch (Exception)
+                {
+                    return RedirectToAction("Error", "Home", new { msg = "Exception editing a post..." });
+                }
+
+            }
+            return View("Details", model);
+        }
+
+        //
+        // GET: /UserPost/Answer/2
+
+        public ActionResult Answer(int id)
+        {
+            var question = userPostRepository.Get(id);
+            if (question == null)
+            {
+                return View("NotFound");
+            }
+            else
+            {
+                var answer = new UserPostViewModel();
+                answer.parent_post_id = question.id;
+                answer.title = "RE: " + question.title;
+                return View(answer);
+            }
+        }
+
+        //
+        // POST: /UserPost/Answer
+        [HttpPost]
+        public ActionResult Answer(UserPostViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    model.ApplyChanges();
+                    // what TODO
+                    // should we check successful creation?
+                    // should we redirect somewhere?
+                }
+                catch (Exception)
+                {
+                    return RedirectToAction("Error", "Home", new { msg = "Exception answering a post..." });
+                }
+
+            }
+            return View("Details", model);
+        }
+
     }
 }

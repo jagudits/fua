@@ -1,0 +1,64 @@
+﻿@model QuestionsAndAnswers.Models.UserPostViewModel
+
+@{
+    ViewBag.Title = "Answer";
+}
+
+<h2>Edit</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend> Answer the post </legend>
+
+        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.user_id)
+        @Html.HiddenFor(model => model.parent_post_id)
+        @Html.HiddenFor(model => model.num_views)
+        @Html.HiddenFor(model => model.created_at)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.title)
+            @Html.ValidationMessageFor(model => model.title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.content)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.content)
+            @Html.ValidationMessageFor(model => model.content)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.is_accepted_answer)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.is_accepted_answer)
+            @Html.ValidationMessageFor(model => model.is_accepted_answer)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ranking_points)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ranking_points)
+            @Html.ValidationMessageFor(model => model.ranking_points)
+        </div>
+
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    <a href="#" onclick="goBack()">Back</a>
+</div>

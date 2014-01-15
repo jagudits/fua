@@ -45,6 +45,22 @@ namespace QuestionsAndAnswers.Models
             return db.user_posts.SingleOrDefault(d => d.id == id);
         }
 
+        public System.Linq.IQueryable<user_post> GetPostChain(int id)
+        {
+            return (from post in db.user_posts
+                    where post.id == id || post.parent_post_id == id
+                    orderby post.created_at descending
+                    select post);
+        }
+
+        public System.Linq.IQueryable<user_post> GetAnswers(int id)
+        {
+            return (from post in db.user_posts
+                    where post.parent_post_id == id
+                    orderby post.created_at descending
+                    select post);
+        }
+
         // Insert/Delete
         public void Add(user_post user_post)
         {

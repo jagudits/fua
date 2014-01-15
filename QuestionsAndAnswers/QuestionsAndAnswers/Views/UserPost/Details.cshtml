@@ -60,5 +60,7 @@
 </fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
-    <a href="#" onclick="goBack()">Back</a>
+    <!-- does not really work a href="#" onclick="goBack()">Back</a -->
+    @Html.ActionLink("Answer", "Answer", new { id=Model.id }) |
+
 </p>

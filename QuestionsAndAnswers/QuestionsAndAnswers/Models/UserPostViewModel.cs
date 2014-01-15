@@ -66,6 +66,7 @@ namespace QuestionsAndAnswers.Models
 
         public void ApplyChanges()
         {
+            obj.id = this.id; // ???
             // TODO should we set user_id here and this way?
             obj.user_id = this.user_id;
             obj.parent_post_id = this.parent_post_id;
